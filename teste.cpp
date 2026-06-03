@@ -12,28 +12,27 @@ struct livro {
 };
 
 // Lê um livro do arquivo.
- bool leitura(ifstream &arq, livro* vetor, int &indice) {
-    if (!getline(arq, vetor[indice].titulo, ','))
+ bool leitura(ifstream &arq, livro temp) {
+    if (!getline(arq, temp.titulo, ','))
         return false;
 
-    if (!arq >> vetor[indice].lancamento)
+    if (!arq >> temp.lancamento)
         return false;
     
     char virgula; // Variável para o descarte da vírgula.
     if (!arq >> virgula)
         return false;
 
-    if(!getline(arq, vetor[indice].autor, ','))
+    if(!getline(arq, temp.autor, ','))
         return false;
 
-    if(!getline(arq, vetor[indice].genero, ','))
+    if(!getline(arq, temp.genero, ','))
         return false;
 
-    if (!arq >> vetor[indice].sexo)
+    if (!arq >> temp.sexo)
         return false;
     arq.ignore();
 
-    indice++;
     return true;
 }
 
@@ -42,14 +41,18 @@ int main(){
 
     if (!planilha) {
         cout << "Erro ao abrir o arquivo.\n";
+        return 1;
     }
 
     int capac = 40; // Quantas posiçoes o vetor guarda.
     livro* vetor = new livro[capac];
 
-    char virgula; // Variável para descarte da vírgula.
     int ocupados = 0; // Quantos livros foram inseridos.
-    while(leitura(planilha, vetor, ocupados)){   
+    
+    livro temp;
+    while(leitura(planilha, temp)){   
+        vetor[ocupados++] = temp;
+        
         if (ocupados == capac) { // Redimensiona o vetor. 
             livro* novo = new livro[capac + 5];
             for (int i = 0; i < capac; i++) {
