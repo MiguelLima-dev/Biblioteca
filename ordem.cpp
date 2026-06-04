@@ -14,22 +14,20 @@ int main(){
     entrada >> tam;
     int* v = new int[tam];
 
-    int ocupados = 0;
     for (int i = 0; i < tam; i++) {
         int num;
         entrada >> num;
         if (i == 0)
-            v[ocupados] = num;
+            v[i] = num;
         else {
             int j = 0;
-            while (j < ocupados && num > v[j])
+            while (j < i && num > v[j])
                 j++;
-            for (int k = ocupados; k > j; k--)
+            for (int k = i; k > j; k--)
                 v[k] = v[k - 1];
             v[j] = num;
         }
 
-        ocupados++;
     }
 
     for (int i = 0; i < tam; i++)
