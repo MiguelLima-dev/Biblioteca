@@ -12,15 +12,17 @@ struct livro {
 };
 
 // Lê um livro do arquivo.
- bool leitura(ifstream &arq, livro temp) {
+/* A leitura precisa que nenhum campo contenha vírgula, seria
+bom tratar isso.*/
+ bool leitura(ifstream &arq, livro &temp) {
     if (!getline(arq, temp.titulo, ','))
         return false;
 
-    if (!arq >> temp.lancamento)
+    if (!(arq >> temp.lancamento))
         return false;
     
     char virgula; // Variável para o descarte da vírgula.
-    if (!arq >> virgula)
+    if (!arq.get(virgula)) // OLHAR ISSO AQUI.
         return false;
 
     if(!getline(arq, temp.autor, ','))
@@ -29,11 +31,20 @@ struct livro {
     if(!getline(arq, temp.genero, ','))
         return false;
 
-    if (!arq >> temp.sexo)
+    if (!(arq >> temp.sexo))
         return false;
     arq.ignore();
 
     return true;
+}
+
+// Executa busca binária, considerando o vetor ordenado por título.
+int buscaBinaria(livro* v, int inicio, int final, string procurado) {
+    if (inicio > final) return -1;
+    int meio = (inicio + final) / 2;
+    if (procurado == v[meio].titulo) return meio;
+    if (procurado > v[meio].titulo) return buscaBinaria(v, meio + 1, final, procurado);
+    else return buscaBinaria(v, inicio, meio - 1, procurado);
 }
 
 int main(){
@@ -50,10 +61,10 @@ int main(){
     int ocupados = 0; // Quantos livros foram inseridos.
     
     livro temp;
-    while(leitura(planilha, temp)){   
-        vetor[ocupados++] = temp;
-        
-        if (ocupados == capac) { // Redimensiona o vetor. 
+    while(leitura(planilha, temp)){ 
+        /* Julga se o redimensionamento do vetor é necessário, caso
+        seja, aumenta o vetor em cinco espaços.*/
+        if (ocupados == capac) {
             livro* novo = new livro[capac + 5];
             for (int i = 0; i < capac; i++) {
                 novo[i] = vetor[i];
@@ -62,8 +73,29 @@ int main(){
             vetor = novo;
             capac += 5;
         }
+
+        /* Insere os livro no vetor, já ordenados por título. A comparação utilizada
+        é o código ASCII(padrão na comparação de strings em C++)*/ 
+        if (ocupados == 0)
+            vetor[0] = temp;
+        else {
+            int j = 0;
+            while (j < ocupados && temp.titulo > vetor[j].titulo)
+                j++;
+            for (int k = ocupados; k > j; k--)
+                vetor[k] = vetor[k - 1];
+            vetor[j] = temp;
+        }
+        ocupados++;
     }
     planilha.close();
+
+    /* Toma como entrada um título e exibe qual o autor.*/
+    string procura;
+    getline(cin, procura);
+    int index = buscaBinaria(vetor, 0, ocupados - 1, procura);
+    if (index == -1) cout << "Título não encontrado.\n";
+    else cout << vetor[index].autor << endl;
 
     delete[] vetor;
     return 0;
