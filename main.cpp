@@ -14,25 +14,18 @@ struct livro {
 // Lê um livro do arquivo.
 /* A leitura precisa que nenhum campo contenha vírgula, seria
 bom tratar isso.*/
- bool leitura(ifstream &arq, livro &temp) {
-    if (!getline(arq, temp.titulo, ','))
-        return false;
-
-    if (!(arq >> temp.lancamento))
-        return false;
-    
+bool leitura(ifstream &arq, livro &temp) {
+    char aspa; // Variável para o descarte da aspa.
     char virgula; // Variável para o descarte da vírgula.
-    if (!arq.get(virgula)) // OLHAR ISSO AQUI.
-        return false;
 
-    if(!getline(arq, temp.autor, ','))
-        return false;
-
-    if(!getline(arq, temp.genero, ','))
-        return false;
-
-    if (!(arq >> temp.sexo))
-        return false;
+    if (!(arq >> aspa)) return false;
+    if (!getline(arq, temp.titulo, '"')) return false;
+    if (!(arq >> virgula)) return false;
+    if (!(arq >> temp.lancamento)) return false;
+    if (!(arq >> virgula)) return false;
+    if(!getline(arq, temp.autor, ',')) return false;
+    if(!getline(arq, temp.genero, ',')) return false;
+    if (!(arq >> temp.sexo)) return false;
     arq.ignore();
 
     return true;
@@ -40,8 +33,8 @@ bom tratar isso.*/
 
 // Executa busca binária, considerando o vetor ordenado por título.
 int buscaBinaria(livro* v, int inicio, int fim, string procurado) {
-    if (inicio > final) return -1;
-    int meio = (inicio + final) / 2;
+    if (inicio > fim) return -1;
+    int meio = (inicio + fim) / 2;
     if (procurado == v[meio].titulo) return meio;
     if (procurado > v[meio].titulo) return buscaBinaria(v, meio + 1, fim, procurado);
     else return buscaBinaria(v, inicio, meio - 1, procurado);
@@ -60,7 +53,21 @@ int main(){
 
     int ocupados = 0; // Quantos livros foram inseridos.
     
-    livro temp;
+    
+    
+    // Descarta o cabeçalho do arquivo csv.
+    string descarte;
+    planilha >> descarte;
+    getline(planilha, descarte, '"');
+    planilha >> descarte;
+    getline(planilha, descarte, ',');
+    planilha >> descarte;
+    getline(planilha, descarte, ',');
+    getline(planilha, descarte, ',');
+    planilha >> descarte;
+
+	// Lê do arquivo todos os livros encontrados.
+	livro temp;
     while(leitura(planilha, temp)){ 
         /* Julga se o redimensionamento do vetor é necessário, caso
         seja, aumenta o vetor em cinco espaços.*/
@@ -90,14 +97,23 @@ int main(){
     }
     planilha.close();
 
-    /* Toma como entrada um título e exibe qual o autor.*/
-    string procura;
+    /* Toma como entrada um título e exibe todos os campos.*/
+    /*string procura;
     cout << "Insira um título: ";
     getline(cin, procura);
     int index = buscaBinaria(vetor, 0, ocupados - 1, procura);
-    if (index == -1) cout << "Título não encontrado.\n";
-    else cout << vetor[index].autor << endl;
-
+    if (index == -1) cout << "Obra não encontrado.\n";
+    else {
+        cout << "-=-==-= Obra =-==-=-\n";
+        cout << vetor[index].titulo << endl;
+        cout << vetor[index].lancamento << endl;
+        cout << vetor[index].autor << endl;
+        cout << vetor[index].genero << endl;
+        cout << vetor[index].sexo << endl;
+    }
+        */
+    for (int i = 0; i < ocupados; i++)
+        cout << vetor[i].titulo << endl;
     delete[] vetor;
     return 0;
 }
