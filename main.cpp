@@ -39,11 +39,11 @@ bom tratar isso.*/
 }
 
 // Executa busca binária, considerando o vetor ordenado por título.
-int buscaBinaria(livro* v, int inicio, int final, string procurado) {
+int buscaBinaria(livro* v, int inicio, int fim, string procurado) {
     if (inicio > final) return -1;
     int meio = (inicio + final) / 2;
     if (procurado == v[meio].titulo) return meio;
-    if (procurado > v[meio].titulo) return buscaBinaria(v, meio + 1, final, procurado);
+    if (procurado > v[meio].titulo) return buscaBinaria(v, meio + 1, fim, procurado);
     else return buscaBinaria(v, inicio, meio - 1, procurado);
 }
 
@@ -92,6 +92,7 @@ int main(){
 
     /* Toma como entrada um título e exibe qual o autor.*/
     string procura;
+    cout << "Insira um título: ";
     getline(cin, procura);
     int index = buscaBinaria(vetor, 0, ocupados - 1, procura);
     if (index == -1) cout << "Título não encontrado.\n";
