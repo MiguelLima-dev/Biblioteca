@@ -9,6 +9,7 @@ struct livro {
     string autor;
     string genero;
     char sexo; 
+    bool ativo = true;
 };
  
 // Lê um livro do arquivo.
