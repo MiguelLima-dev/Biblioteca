@@ -25,7 +25,7 @@ bool leitura(ifstream &arq, livro &temp) {
     if(!getline(arq, temp.genero, ',')) return false;
     if (!(arq >> temp.sexo)) return false;
     arq.ignore();
-
+ 
     return true;
 }
  
