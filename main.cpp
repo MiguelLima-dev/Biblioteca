@@ -115,6 +115,10 @@ int main(){
  
     int ocupados = 0; // Quantos livros foram inseridos.
     
+    // Descarta o cabeçalho.
+    string descarte;
+    getline(planilha, descarte);
+    
     livro temp;
     while(leitura(planilha, temp)){ 
         /* Julga se o redimensionamento do vetor é necessário, caso
