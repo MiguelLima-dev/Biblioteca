@@ -35,10 +35,10 @@ bool leitura(ifstream &arq, livro &temp) {
 }
  
 // Ordena os livros por título.
-// Particiona usando Hoare.
+// Particiona o vetor.
 int particao(livro v[], int inicio, int fim) {
     livro pivo = v[inicio];
-    int i = inicio - 1, j = fim + 1;
+    int i = inicio + 1, j = fim;
     while (i <= j) {
         if (v[i].titulo <= pivo.titulo) i++;
         else if (pivo.titulo <= v[j].titulo) j--;
