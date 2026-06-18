@@ -134,6 +134,65 @@ void mostraIntervalo(livro* v, int ocupados, int inicio, int fim) {
         cout << v[i].titulo << " - " << v[i].autor << " (" << v[i].lancamento << ")\n";
     }
 }
+
+
+
+// Permite que o usuário insira novos livros na memória.
+void insercaoManual(livro* &v, int &ocupados, int &capac){
+	if(ocupados == capac){
+		livro* novoVetor = new livro[capac + 5];
+		for(int i = 0; i < capac; i++){
+			novoVetor[i] = v[i];
+		}
+
+		delete[] v;
+		v = novoVetor;
+		capac += 5;
+		cout << "ATENÇÃO! Vetor cheio. Redimensionando para " << capac << "posiçẽs.\n";
+	}
+	
+	livro novo;
+	cout << "\n--- Cadastro de novos livros ---\n";
+	cout << "Insira o título do novo livro: ";
+	getline(cin, novo.titulo);
+	
+	cout << "Insira o ano de lançamento da obra: ";
+	cin >> novo.lancamento;
+	cin.ignore();
+	
+	cout << "Insira o nome do autor(a): ";
+	getline(cin, novo.autor);
+	
+	cout << "Insira o genero do livro: ";
+	getline(cin, novo.genero);
+	
+	cout << "Insira o sexo do autor(a) (M/F): ";
+	cin >> novo.sexo;
+	
+	
+	int j = 0;
+	while (j < ocupados && novo.titulo > v[j].titulo){
+		j++;
+	}
+	
+	for(int P = ocupados; P > j; P--){
+		v[P] = v[P - 1];
+	}
+	
+	v[j] = novo;
+	ocupados++;
+	
+	ofstream arqSaida("biblioteca.csv", ios::app);
+	if(!arqSaida){
+		cout << "Erro ao tentar abrir arquivo para gravação. Novo livro salvo apenas na memória.\n";
+		return;
+	}
+	
+	arqSaida << novo.titulo << ", " << novo.lancamento << ", " << novo.autor << ", " << novo.genero << ", " << novo.sexo << "\n";
+	arqSaida.close();
+	
+	cout << "Livro cadastrado com sucesso!\n";	
+}
  
 // Inseri um livro no vetor.
 void insercao(livro* &v, int &tam, int &cap) {
@@ -232,6 +291,7 @@ int main(){
         cout << "4 - Buscar por sexo do autor\n";
         cout << "5 - Buscar por ano\n";
         cout << "6 - Mostrar intervalo\n";
+        cout << "7 - Inserir novos livros\n";
         cout << "0 - Sair\n";
         cout << "Opcao: ";
         cin >> opcao;
@@ -284,6 +344,9 @@ int main(){
                 mostraIntervalo(vetor, ocupados, ini, fim);
                 break;
             }
+            case 7: {
+				insercaoManual(vetor, ocupados, capac);
+			}
             case 0:
                 cout << "Encerrando.\n";
                 break;
