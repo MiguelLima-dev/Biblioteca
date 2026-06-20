@@ -67,8 +67,10 @@ int buscaBinariaTitulo(Livro* v, int inicio, int fim, string procurado) {
         if (v[meio].ativo) return meio;
         else return -1;
     }
-    if (procurado > v[meio].titulo) return buscaBinariaTitulo(v, meio + 1, fim, procurado);
-    else return buscaBinariaTitulo(v, inicio, meio - 1, procurado);
+    if (procurado > v[meio].titulo) 
+        return buscaBinariaTitulo(v, meio + 1, fim, procurado);
+    else 
+        return buscaBinariaTitulo(v, inicio, meio - 1, procurado);
 }
 
 // Particiona o vetor, usando título como comparação.
@@ -102,12 +104,11 @@ uma aparição do autor.*/
 int buscaBinariaAutor(Livro* v, int inicio, int fim, string procurado) {
     if (inicio > fim) return -1;
     int meio = (inicio + fim) / 2;
-    if (v[meio].autor == procurado) {
-        if (v[meio].ativo) return meio;
-        else return -1;
-    }
-    if (procurado > v[meio].autor) return buscaBinariaAutor(v, meio + 1, fim, procurado);
-    else return buscaBinariaAutor(v, inicio, meio - 1, procurado);
+    if (v[meio].autor == procurado) return meio;
+    if (procurado > v[meio].autor) 
+        return buscaBinariaAutor(v, meio + 1, fim, procurado);
+    else 
+        return buscaBinariaAutor(v, inicio, meio - 1, procurado);
 }
 
 /* Toma o índice de um livro, e retorna por referência o intervalo de livros 
@@ -128,7 +129,10 @@ void mostraIntervalo(Livro* v, int tam, int inicio, int fim) {
         return;
     }
     for (int i = inicio - 1; i < fim; i++) {
-        cout << v[i].titulo << " - " << v[i].autor << " (" << v[i].lancamento << ")\n";
+        if (v[i].ativo) {
+            cout << v[i].titulo << " - " << v[i].autor 
+            << " (" << v[i].lancamento << ")\n";
+        }
     }
 }
  
@@ -184,6 +188,7 @@ void remover(Livro v[], int tam, string titulo) {
 }
 
 void salvar(ofstream &arq, Livro v[], int tam) {
+    arq << "Título,Lançamento,Autor,Gênero,Sexo\n";
     for (int i = 0; i < tam; i++) {
         if (v[i].ativo) {
         arq << "\"" << v[i].titulo << "\"" << "," <<
@@ -194,7 +199,7 @@ void salvar(ofstream &arq, Livro v[], int tam) {
 }
 
 int main(){
-    ifstream planilha("biblioteca.csv");
+    ifstream entrada("biblioteca.csv");
  
     if (!planilha) {
         cout << "Erro ao abrir o arquivo.\n";
@@ -208,10 +213,10 @@ int main(){
     
     // Descarta o cabeçalho.
     string descarte;
-    getline(planilha, descarte);
+    getline(entrada, descarte);
     
     Livro temp;
-    while(leitura(planilha, temp)){ 
+    while(leitura(entrada, temp)){ 
         /* Julga se o redimensionamento do vetor é necessário, caso
         seja, aumenta o vetor em cinco espaços.*/
         if (tam == capac) {
@@ -225,7 +230,7 @@ int main(){
         vetor[tam] = temp;
         tam++;
     }
-    planilha.close();
+    entrada.close();
 
     /* Menu principal. O usuário escolhe a operação desejada e o programa
     executa até que a opção de saída seja escolhida. */
@@ -235,9 +240,10 @@ int main(){
         cout << "1 - Buscar por titulo\n";
         cout << "2 - Buscar por autor\n";
         cout << "3 - Mostrar intervalo\n";
-        cout << "4 - Inserir obra\n";
-        cout << "5 - Remover obra\n";
-        cout << "6 - Salvar mudanças\n";
+        cout << "4 - Mostrar todos livros\n";
+        cout << "5 - Inserir obra\n";
+        cout << "6 - Remover obra\n";
+        cout << "7 - Salvar mudanças\n";
         cout << "0 - Sair\n";
         cout << "Opcao: ";
         cin >> opcao;
@@ -265,14 +271,20 @@ int main(){
                 else {
                     int esq, dir;
                     expandeAutor(vetor, tam, index, esq, dir);
-                    cout << "Livros de " << procura << " encontrados:\n";
+                    bool achouAtivo = false;
                     for (int i = esq; i <= dir; i++) {
+                        if (vetor[i].ativo) {
+                            if (!achouAtivo) {
+                                cout << "Livros de " << procura << "encontrados:\n";
+                                achouAtivo = true;
+                            }
                         cout << "--" << vetor[i].titulo << "--\n";
+                        }
                     }
+                    if (!achouAtivo) cout << "Nenhum livro desse autor encontrado.\n";
                 }
                 break;
             }
-            
             case 3: {
                 int ini, fim;
                 cout << "Insira o início do intervalo: ";
@@ -282,12 +294,15 @@ int main(){
                 mostraIntervalo(vetor, tam, ini, fim);
                 break;
             }
-        
-            case 4: {
-                insercao(vetor, tam, capac);
+            case 4:{
+                mostraIntervalo(vetor, tam, 1, tam);
                 break;
             }
             case 5: {
+                insercao(vetor, tam, capac);
+                break;
+            }
+            case 6: {
                 quickSortTitulo(vetor, 0 , tam - 1);
                 string removendo;
                 cout << "Insira o título da obra que deseja remover: ";
@@ -295,7 +310,7 @@ int main(){
                 remover(vetor, tam, removendo);
                 break;
             }
-            case 6: {
+            case 7: {
                 ofstream saida ("biblioteca.csv");
                 salvar(saida, vetor, tam);
                 saida.close();
