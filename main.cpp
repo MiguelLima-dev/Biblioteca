@@ -1,4 +1,4 @@
-/* Ana Carolina Silva Sousa, Maria Clara, Miguel Augusto de Lima
+/* Ana Carolina Silva Sousa e Miguel Augusto de Lima
 Turma: 14A
 Tema: Livros
 */
@@ -7,7 +7,7 @@ Tema: Livros
 using namespace std;
  
 // Estrutura utilizada para armazenar as informações de cada livro
-struct livro {
+struct Livro {
     string titulo;
     int lancamento;
     string autor;
@@ -17,7 +17,7 @@ struct livro {
 };
  
 // Lê um livro do arquivo.
-bool leitura(ifstream &arq, livro &temp) {
+bool leitura(ifstream &arq, Livro &temp) {
     char aspa; // Variável para o descarte da aspa.
     char virgula; // Variável para o descarte da vírgula.
 
@@ -34,10 +34,9 @@ bool leitura(ifstream &arq, livro &temp) {
     return true;
 }
  
-// Ordena os livros por título.
-// Particiona o vetor.
-int particao(livro v[], int inicio, int fim) {
-    livro pivo = v[inicio];
+// Particiona o vetor, usando título como comparação.
+int particaoTitulo(Livro v[], int inicio, int fim) {
+    Livro pivo = v[inicio];
     int i = inicio + 1, j = fim;
     while (i <= j) {
         if (v[i].titulo <= pivo.titulo) i++;
@@ -52,81 +51,79 @@ int particao(livro v[], int inicio, int fim) {
     v[j] = pivo;
     return j;
 }
-// Executa o algoritmo de quick sort.
-void quickSort(livro vet[], int esq, int dir) {
+// Executa o algoritmo de quick sort para ordenar por título.
+void quickSortTitulo(Livro vet[], int esq, int dir) {
     if (esq < dir) {
-        int pivo = particao(vet, esq, dir);
-        quickSort(vet, esq, pivo - 1);
-        quickSort(vet, pivo + 1, dir);
+        int pivo = particaoTitulo(vet, esq, dir);
+        quickSortTitulo(vet, esq, pivo - 1);
+        quickSortTitulo(vet, pivo + 1, dir);
     }
 }
 // Executa busca binária, considerando o vetor ordenado por título.
-int buscaBinaria(livro* v, int inicio, int fim, string procurado) {
+int buscaBinariaTitulo(Livro* v, int inicio, int fim, string procurado) {
     if (inicio > fim) return -1;
     int meio = (inicio + fim) / 2;
     if (procurado == v[meio].titulo) {
         if (v[meio].ativo) return meio;
         else return -1;
     }
-    if (procurado > v[meio].titulo) return buscaBinaria(v, meio + 1, fim, procurado);
-    else return buscaBinaria(v, inicio, meio - 1, procurado);
+    if (procurado > v[meio].titulo) return buscaBinariaTitulo(v, meio + 1, fim, procurado);
+    else return buscaBinariaTitulo(v, inicio, meio - 1, procurado);
 }
- 
-// Exibe todos os títulos de um determinado autor.
-void buscaAutor(livro* v, int ocupados, string procurado) {
-    bool encontrou = false;
-    for (int i = 0; i < ocupados; i++) {
-        if (v[i].autor == procurado) {
-            cout << v[i].titulo << endl;
-            encontrou = true;
+
+// Particiona o vetor, usando título como comparação.
+int particaoAutor (Livro v[], int inicio, int fim){
+    Livro pivo = v[inicio];
+    int i = inicio + 1, j = fim;
+    while (i <= j) {
+        if (v[i].autor <= pivo.autor) i++;
+        else if (pivo.autor <= v[j].autor) j--;
+        else {
+            swap(v[i], v[j]);
+            i++;
+            j--;
         }
     }
-    if (!encontrou)
-        cout << "Autor não encontrado.\n";
+    v[inicio] = v[j];
+    v[j] = pivo;
+    return j;
 }
- 
-// Exibe todos os títulos de um determinado gênero.
-void buscaGenero(livro* v, int ocupados, string procurado) {
-    bool encontrou = false;
-    for (int i = 0; i < ocupados; i++) {
-        if (v[i].genero == procurado) {
-            cout << v[i].titulo << endl;
-            encontrou = true;
-        }
+// Executa o algoritmo de quick sort para ordenar por autor.
+void quickSortAutor(Livro vet[], int esq, int dir) {
+    if (esq < dir) {
+        int pivo = particaoAutor(vet, esq, dir);
+        quickSortAutor(vet, esq, pivo - 1);
+        quickSortAutor(vet, pivo + 1, dir);
     }
-    if (!encontrou)
-        cout << "Gênero não encontrado.\n";
 }
- 
-// Exibe todos os títulos de acordo com o sexo do autor (M ou F).
-void buscaSexo(livro* v, int ocupados, char procurado) {
-    bool encontrou = false;
-    for (int i = 0; i < ocupados; i++) {
-        if (v[i].sexo == procurado) {
-            cout << v[i].titulo << endl;
-            encontrou = true;
-        }
+
+/* Executa busca binária, considerando o vetor ordenado por autor. Encontra
+uma aparição do autor.*/
+int buscaBinariaAutor(Livro* v, int inicio, int fim, string procurado) {
+    if (inicio > fim) return -1;
+    int meio = (inicio + fim) / 2;
+    if (v[meio].autor == procurado) {
+        if (v[meio].ativo) return meio;
+        else return -1;
     }
-    if (!encontrou)
-        cout << "Nenhum livro encontrado.\n";
+    if (procurado > v[meio].autor) return buscaBinariaAutor(v, meio + 1, fim, procurado);
+    else return buscaBinariaAutor(v, inicio, meio - 1, procurado);
 }
- 
-// Exibe todos os títulos lançados em um determinado ano.
-void buscaAno(livro* v, int ocupados, int procurado) {
-    bool encontrou = false;
-    for (int i = 0; i < ocupados; i++) {
-        if (v[i].lancamento == procurado) {
-            cout << v[i].titulo << endl;
-            encontrou = true;
-        }
+
+/* Toma o índice de um livro, e retorna por referência o intervalo de livros 
+do mesmo autor.*/
+void expandeAutor(Livro v[], int tam, int meio, int& esq, int& dir) {
+    esq = dir = meio;
+    while (esq > 0 && v[esq - 1].autor == v[meio].autor) {
+        esq--;
     }
-    if (!encontrou)
-        cout << "Ano não encontrado.\n";
+    while (dir < tam - 1 && v[dir + 1].autor == v[meio].autor) {
+        dir++;
+    }
 }
- 
 // Exibe os livros entre duas posições informadas pelo usuário.
-void mostraIntervalo(livro* v, int ocupados, int inicio, int fim) {
-    if (inicio < 1 || fim > ocupados || inicio > fim) {
+void mostraIntervalo(Livro* v, int tam, int inicio, int fim) {
+    if (inicio < 1 || fim > tam || inicio > fim) {
         cout << "Intervalo inválido.\n";
         return;
     }
@@ -136,46 +133,57 @@ void mostraIntervalo(livro* v, int ocupados, int inicio, int fim) {
 }
  
 // Inseri um livro no vetor.
-void insercao(livro* &v, int &tam, int &cap) {
+void insercao(Livro* &v, int &tam, int &cap) {
+    Livro aux;
     if (tam == cap) {
-        livro* novo = new livro[cap + 1];
+        Livro* novo = new Livro[cap + 5];
         copy(v, v + cap, novo);
         delete[] v;
         v = novo;
-        cap++;
+        cap += 5;
     }
     cout << "\n--- Cadastro de novos livros ---\n";
 	cout << "Insira o título do novo livro: ";
-    getline(cin, v[tam].titulo);
+    getline(cin, aux.titulo);
 
     cout << "Insira o ano de lançamento da obra: ";
-	cin >> v[tam].lancamento;
+	cin >> aux.lancamento;
 	cin.ignore();
 	
 	cout << "Insira o nome do autor(a): ";
-	getline(cin, v[tam].autor);
+	getline(cin, aux.autor);
 	
 	cout << "Insira o genero do livro: ";
-	getline(cin, v[tam].genero);
+	getline(cin, aux.genero);
 	
 	cout << "Insira o sexo do autor(a) (M/F): ";
-	cin >> v[tam].sexo;
+	cin >> aux.sexo;
     cout << "Livro cadastrado com sucesso!\n";
     
+    int i = 0;
+    while (i < tam && v[i].titulo < aux.titulo) {
+        i++;
+    }
+    for (int j = tam; j > i; j--) {
+        v[j] = v[j - 1];
+    }
+    v[i] = aux;
     tam++;
-    quickSort(v, 0, tam - 1);
 }
 
 // Removi logicamente um livro do vetor.
-void deletar(livro v[], int tam, string titulo) {
-    int indice = buscaBinaria(v, 0, tam - 1, titulo);
+void remover(Livro v[], int tam, string titulo) {
+    int indice = buscaBinariaTitulo(v, 0, tam - 1, titulo);
     if (indice != -1) {
         v[indice].ativo = false;
         cout << "Livro removido com sucesso!\n";
     }
+    else {
+        cout << "Livro não encontrado.\n";
+    }
 }
 
-void salvar(ofstream &arq,livro v[], int tam) {
+void salvar(ofstream &arq, Livro v[], int tam) {
     for (int i = 0; i < tam; i++) {
         if (v[i].ativo) {
         arq << "\"" << v[i].titulo << "\"" << "," <<
@@ -194,32 +202,30 @@ int main(){
     }
  
     int capac = 40; // Quantas posiçoes o vetor guarda.
-    livro* vetor = new livro[capac];
+    Livro* vetor = new Livro[capac];
  
-    int ocupados = 0; // Quantos livros foram inseridos.
+    int tam = 0; // Quantos livros foram inseridos.
     
     // Descarta o cabeçalho.
     string descarte;
     getline(planilha, descarte);
     
-    livro temp;
+    Livro temp;
     while(leitura(planilha, temp)){ 
         /* Julga se o redimensionamento do vetor é necessário, caso
         seja, aumenta o vetor em cinco espaços.*/
-        if (ocupados == capac) {
-            livro* novo = new livro[capac + 5];
-            copy(vetor, vetor + ocupados, novo);
+        if (tam == capac) {
+            Livro* novo = new Livro[capac + 5];
+            copy(vetor, vetor + tam, novo);
             delete[] vetor;
             vetor = novo;
             capac += 5;
         }
         
-        vetor[ocupados] = temp;
-        ocupados++;
+        vetor[tam] = temp;
+        tam++;
     }
     planilha.close();
- 
-    quickSort(vetor, 0, ocupados - 1);
 
     /* Menu principal. O usuário escolhe a operação desejada e o programa
     executa até que a opção de saída seja escolhida. */
@@ -228,10 +234,10 @@ int main(){
         cout << "\n--- Biblioteca ---\n";
         cout << "1 - Buscar por titulo\n";
         cout << "2 - Buscar por autor\n";
-        cout << "3 - Buscar por genero\n";
-        cout << "4 - Buscar por sexo do autor\n";
-        cout << "5 - Buscar por ano\n";
-        cout << "6 - Mostrar intervalo\n";
+        cout << "3 - Mostrar intervalo\n";
+        cout << "4 - Inserir obra\n";
+        cout << "5 - Remover obra\n";
+        cout << "6 - Salvar mudanças\n";
         cout << "0 - Sair\n";
         cout << "Opcao: ";
         cin >> opcao;
@@ -242,46 +248,57 @@ int main(){
                 string procura;
                 cout << "Insira um título: ";
                 getline(cin, procura);
-                int index = buscaBinaria(vetor, 0, ocupados - 1, procura);
+
+                quickSortTitulo(vetor, 0, tam - 1);
+                int index = buscaBinariaTitulo(vetor, 0, tam - 1, procura);
                 if (index == -1) cout << "Título não encontrado.\n";
                 else cout << vetor[index].autor << endl;
                 break;
             }
             case 2: {
-                string procuraAutor;
-                cout << "Insira um autor: ";
-                getline(cin, procuraAutor);
-                buscaAutor(vetor, ocupados, procuraAutor);
+                string procura;
+                cout << "insira um autor: ";
+                getline(cin, procura);
+                quickSortAutor(vetor, 0, tam - 1);
+                int index = buscaBinariaAutor(vetor, 0, tam - 1, procura);
+                if (index == -1) cout << "Nenhum livro desse autor encotrado.\n";
+                else {
+                    int esq, dir;
+                    expandeAutor(vetor, tam, index, esq, dir);
+                    cout << "Livros de " << procura << " encontrados:\n";
+                    for (int i = esq; i <= dir; i++) {
+                        cout << "--" << vetor[i].titulo << "--\n";
+                    }
+                }
                 break;
             }
+            
             case 3: {
-                string procuraGenero;
-                cout << "Insira um gênero: ";
-                getline(cin, procuraGenero);
-                buscaGenero(vetor, ocupados, procuraGenero);
-                break;
-            }
-            case 4: {
-                char procuraSexo;
-                cout << "Insira o sexo do autor (M/F): ";
-                cin >> procuraSexo;
-                buscaSexo(vetor, ocupados, procuraSexo);
-                break;
-            }
-            case 5: {
-                int procuraAno;
-                cout << "Insira um ano: ";
-                cin >> procuraAno;
-                buscaAno(vetor, ocupados, procuraAno);
-                break;
-            }
-            case 6: {
                 int ini, fim;
                 cout << "Insira o início do intervalo: ";
                 cin >> ini;
                 cout << "Insira o fim do intervalo: ";
                 cin >> fim;
-                mostraIntervalo(vetor, ocupados, ini, fim);
+                mostraIntervalo(vetor, tam, ini, fim);
+                break;
+            }
+        
+            case 4: {
+                insercao(vetor, tam, capac);
+                break;
+            }
+            case 5: {
+                quickSortTitulo(vetor, 0 , tam - 1);
+                string removendo;
+                cout << "Insira o título da obra que deseja remover: ";
+                getline(cin, removendo);
+                remover(vetor, tam, removendo);
+                break;
+            }
+            case 6: {
+                ofstream saida ("biblioteca.csv");
+                salvar(saida, vetor, tam);
+                saida.close();
                 break;
             }
             case 0:
