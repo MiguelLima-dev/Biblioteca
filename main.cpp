@@ -164,29 +164,25 @@ void insercao(Livro* &v, int &tam, int &cap) {
 	cin >> aux.sexo;
     cout << "Livro cadastrado com sucesso!\n";
     
-    int i = 0;
-    while (i < tam && v[i].titulo < aux.titulo) {
-        i++;
-    }
-    for (int j = tam; j > i; j--) {
-        v[j] = v[j - 1];
-    }
-    v[i] = aux;
+    v[tam] = aux;
     tam++;
 }
 
 // Removi logicamente um livro do vetor.
-void remover(Livro v[], int tam, string titulo) {
+bool remover(Livro v[], int tam, string titulo) {
     int indice = buscaBinariaTitulo(v, 0, tam - 1, titulo);
     if (indice != -1) {
         v[indice].ativo = false;
         cout << "Livro removido com sucesso!\n";
+        return true;
     }
     else {
         cout << "Livro não encontrado.\n";
+        return false;
     }
 }
 
+// Salva no arquivo os dados após a manipulação do programa.
 void salvar(ofstream &arq, Livro v[], int tam) {
     arq << "Título,Lançamento,Autor,Gênero,Sexo\n";
     for (int i = 0; i < tam; i++) {
@@ -201,15 +197,14 @@ void salvar(ofstream &arq, Livro v[], int tam) {
 int main(){
     ifstream entrada("biblioteca.csv");
  
-    if (!planilha) {
+    if (!entrada) {
         cout << "Erro ao abrir o arquivo.\n";
         return 1;
     }
  
     int capac = 40; // Quantas posiçoes o vetor guarda.
+    int tam = 0;
     Livro* vetor = new Livro[capac];
- 
-    int tam = 0; // Quantos livros foram inseridos.
     
     // Descarta o cabeçalho.
     string descarte;
@@ -234,23 +229,27 @@ int main(){
 
     /* Menu principal. O usuário escolhe a operação desejada e o programa
     executa até que a opção de saída seja escolhida. */
-    int opcao;
+    int livrosAtivos = tam;
+    char opcao;
     do {
+        cout << "Existem " << livrosAtivos << " livros no acervo.";
         cout << "\n--- Biblioteca ---\n";
-        cout << "1 - Buscar por titulo\n";
-        cout << "2 - Buscar por autor\n";
-        cout << "3 - Mostrar intervalo\n";
-        cout << "4 - Mostrar todos livros\n";
-        cout << "5 - Inserir obra\n";
-        cout << "6 - Remover obra\n";
-        cout << "7 - Salvar mudanças\n";
+        cout << "1 - Buscar por título\n";
+        cout << "2 - Ordenar por título\n";
+        cout << "3 - Buscar por autor\n";
+        cout << "4 - Ordenar por autor\n";
+        cout << "5 - Mostrar intervalo\n";
+        cout << "6 - Mostrar todos livros\n";
+        cout << "7 - Inserir obra\n";
+        cout << "8 - Remover obra\n";
+        cout << "9 - Salvar mudanças\n";
         cout << "0 - Sair\n";
         cout << "Opcao: ";
         cin >> opcao;
         cin.ignore();
 
         switch (opcao) {
-            case 1: {
+            case '1': {
                 string procura;
                 cout << "Insira um título: ";
                 getline(cin, procura);
@@ -261,9 +260,14 @@ int main(){
                 else cout << vetor[index].autor << endl;
                 break;
             }
-            case 2: {
+            case '2': {
+                quickSortTitulo(vetor, 0, tam - 1);
+                cout << "Vetor ordenado por título.\n";
+                break;
+            }
+            case '3': {
                 string procura;
-                cout << "insira um autor: ";
+                cout << "Insira um autor: ";
                 getline(cin, procura);
                 quickSortAutor(vetor, 0, tam - 1);
                 int index = buscaBinariaAutor(vetor, 0, tam - 1, procura);
@@ -275,17 +279,22 @@ int main(){
                     for (int i = esq; i <= dir; i++) {
                         if (vetor[i].ativo) {
                             if (!achouAtivo) {
-                                cout << "Livros de " << procura << "encontrados:\n";
+                                cout << "Livros de " << procura << " encontrados:\n";
                                 achouAtivo = true;
                             }
-                        cout << "--" << vetor[i].titulo << "--\n";
+                            cout << "-- " << vetor[i].titulo << " - " << vetor[i].lancamento << " --\n";
                         }
                     }
                     if (!achouAtivo) cout << "Nenhum livro desse autor encontrado.\n";
                 }
                 break;
             }
-            case 3: {
+            case '4': {
+                quickSortAutor(vetor, 0, tam - 1);
+                cout << "Vetor ordenado por autor.\n";
+                break;
+            }
+            case '5': {
                 int ini, fim;
                 cout << "Insira o início do intervalo: ";
                 cin >> ini;
@@ -294,35 +303,37 @@ int main(){
                 mostraIntervalo(vetor, tam, ini, fim);
                 break;
             }
-            case 4:{
+            case '6':{
                 mostraIntervalo(vetor, tam, 1, tam);
                 break;
             }
-            case 5: {
+            case '7': {
                 insercao(vetor, tam, capac);
+                livrosAtivos++;
                 break;
             }
-            case 6: {
+            case '8': {
                 quickSortTitulo(vetor, 0 , tam - 1);
                 string removendo;
                 cout << "Insira o título da obra que deseja remover: ";
                 getline(cin, removendo);
-                remover(vetor, tam, removendo);
+                if(remover(vetor, tam, removendo)) livrosAtivos--;
                 break;
             }
-            case 7: {
+            case '9': {
                 ofstream saida ("biblioteca.csv");
                 salvar(saida, vetor, tam);
                 saida.close();
                 break;
             }
-            case 0:
+            case '0':
                 cout << "Encerrando.\n";
                 break;
             default:
                 cout << "Opção inválida.\n";
         }
-    } while (opcao != 0);
+        cout << endl;
+    } while (opcao != '0');
 
     delete[] vetor;
     return 0;
