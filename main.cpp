@@ -15,7 +15,13 @@ struct Livro {
     char sexo; 
     bool ativo = true;
 };
- 
+
+// Função que troca dois livros.
+void swap(Livro &a, Livro &b) {
+    Livro aux = a;
+    a = b;
+    b = aux;
+}
 // Lê um livro do arquivo.
 bool leitura(ifstream &arq, Livro &temp) {
     char aspa; // Variável para o descarte da aspa.
@@ -137,7 +143,7 @@ void mostraIntervalo(Livro* v, int tam, int inicio, int fim) {
 }
  
 // Inseri um livro no vetor.
-void insercao(Livro* &v, int &tam, int &cap) {
+void insercao(Livro* &v, int &tam, int &cap, string ordem) {
     Livro aux;
     if (tam == cap) {
         Livro* novo = new Livro[cap + 5];
@@ -164,7 +170,24 @@ void insercao(Livro* &v, int &tam, int &cap) {
 	cin >> aux.sexo;
     cout << "Livro cadastrado com sucesso!\n";
     
-    v[tam] = aux;
+    int i = tam - 1;
+    if (ordem == "titulo") {
+        while (i >= 0 && v[i].titulo > aux.titulo) {
+            v[i + 1] = v[i];
+            i--;
+        }
+        v[i + 1] = aux;
+    }
+    else if (ordem == "autor") {
+        while (i >= 0 && v[i].autor > aux.autor) {
+            v[i + 1] = v[i];
+            i--;
+        }
+        v[i + 1] = aux;
+    }
+    else {
+        v[tam] = aux;
+    }
     tam++;
 }
 
@@ -231,6 +254,9 @@ int main(){
     executa até que a opção de saída seja escolhida. */
     int livrosAtivos = tam;
     char opcao;
+
+    // Guarda qual a ordenação atual do vetor;
+    string ordenacao = "nenhuma";
     do {
         cout << "Existem " << livrosAtivos << " livros no acervo.";
         cout << "\n--- Biblioteca ---\n";
@@ -258,10 +284,14 @@ int main(){
                 int index = buscaBinariaTitulo(vetor, 0, tam - 1, procura);
                 if (index == -1) cout << "Título não encontrado.\n";
                 else cout << vetor[index].autor << endl;
+
+                if (ordenacao == "autor")
+                    quickSortAutor(vetor, 0, tam - 1);
                 break;
             }
             case '2': {
                 quickSortTitulo(vetor, 0, tam - 1);
+                ordenacao = "titulo";
                 cout << "Vetor ordenado por título.\n";
                 break;
             }
@@ -287,10 +317,14 @@ int main(){
                     }
                     if (!achouAtivo) cout << "Nenhum livro desse autor encontrado.\n";
                 }
+
+                if (ordenacao == "titulo")
+                    quickSortTitulo(vetor, 0, tam -1);
                 break;
             }
             case '4': {
                 quickSortAutor(vetor, 0, tam - 1);
+                ordenacao = "autor";
                 cout << "Vetor ordenado por autor.\n";
                 break;
             }
@@ -308,7 +342,7 @@ int main(){
                 break;
             }
             case '7': {
-                insercao(vetor, tam, capac);
+                insercao(vetor, tam, capac, ordenacao);
                 livrosAtivos++;
                 break;
             }
@@ -318,6 +352,9 @@ int main(){
                 cout << "Insira o título da obra que deseja remover: ";
                 getline(cin, removendo);
                 if(remover(vetor, tam, removendo)) livrosAtivos--;
+
+                if (ordenacao == "autor")
+                    quickSortAutor(vetor, 0, tam -1);
                 break;
             }
             case '9': {
