@@ -1,152 +1,168 @@
-"Título",Ano,Autor,Gênero,sexo
-"Dom Casmurro",1899,Machado de Assis,Romance,M
-"Memórias Póstumas de Brás Cubas",1881,Machado de Assis,Romance,M
-"Quincas Borba",1891,Machado de Assis,Romance,M
-"O Alienista",1882,Machado de Assis,Novela,M
-"Helena",1876,Machado de Assis,Romance,M
-"Iaiá Garcia",1878,Machado de Assis,Romance,M
-"Esaú e Jacó",1904,Machado de Assis,Romance,M
-"Memorial de Aires",1908,Machado de Assis,Romance,M
-"O Cortiço",1890,Aluísio Azevedo,Romance,M
-"O Mulato",1881,Aluísio Azevedo,Romance,M
-"Casa de Pensão",1884,Aluísio Azevedo,Romance,M
-"O Ateneu",1888,Raul Pompéia,Romance,M
-"Lucíola",1862,José de Alencar,Romance,M
-"Iracema",1865,José de Alencar,Romance,M
-"Ubirajara",1874,José de Alencar,Romance,M
-"Senhora",1875,José de Alencar,Romance,M
-"A Moreninha",1844,Joaquim Manuel de Macedo,Romance,M
+Título,Lançamento,Autor,Gênero,Sexo
 "A Carne",1888,Júlio Ribeiro,Romance,M
-"O Primo Basílio",1878,Eça de Queirós,Romance,M
-"Os Maias",1888,Eça de Queirós,Romance,M
-"O Crime do Padre Amaro",1875,Eça de Queirós,Romance,M
+"A Cartuxa de Parma",1839,Stendhal,Romance,M
+"A Caverna",2000,José Saramago,Romance,M
 "A Cidade e as Serras",1901,Eça de Queirós,Romance,M
-"A Relíquia",1887,Eça de Queirós,Romance,M
-"A Ilustre Casa de Ramires",1900,Eça de Queirós,Romance,M
-"São Bernardo",1934,Graciliano Ramos,Romance,M
-"Vidas Secas",1938,Graciliano Ramos,Romance,M
-"Angústia",1936,Graciliano Ramos,Romance,M
-"Grande Sertão: Veredas",1956,João Guimarães Rosa,Romance,M
-"Sagarana",1946,João Guimarães Rosa,Conto,M
-"Primeiras Estórias",1962,João Guimarães Rosa,Conto,M
-"A Hora da Estrela",1977,Clarice Lispector,Romance,F
-"A Paixão Segundo G.H.",1964,Clarice Lispector,Romance,F
-"Perto do Coração Selvagem",1943,Clarice Lispector,Romance,F
-"Laços de Família",1960,Clarice Lispector,Conto,F
-"A Maçã no Escuro",1961,Clarice Lispector,Romance,F
-"O Lustre",1946,Clarice Lispector,Romance,F
-"Felicidade Clandestina",1971,Clarice Lispector,Conto,F
-"Água Viva",1973,Clarice Lispector,Ficção,F
-"O Triste Fim de Policarpo Quaresma",1911,Lima Barreto,Romance,M
-"Clara dos Anjos",1948,Lima Barreto,Romance,M
-"Dom Quixote",1605,Miguel de Cervantes,Romance,M
-"Crime e Castigo",1866,Fiodor Dostoiévski,Romance,M
-"Guerra e Paz",1869,Liev Tolstói,Romance,M
-"Anna Karenina",1877,Liev Tolstói,Romance,M
-"Madame Bovary",1857,Gustave Flaubert,Romance,M
-"O Vermelho e o Negro",1830,Stendhal,Romance,M
-"Orgulho e Preconceito",1813,Jane Austen,Romance,F
-"O Morro dos Ventos Uivantes",1847,Emily Brontë,Romance,F
-"Jane Eyre",1847,Charlotte Brontë,Romance,F
-"Grandes Esperanças",1861,Charles Dickens,Romance,M
-"Um Conto de Duas Cidades",1859,Charles Dickens,Romance,M
-"David Copperfield",1850,Charles Dickens,Romance,M
-"Moby Dick",1851,Herman Melville,Aventura,M
-"A Letra Escarlate",1850,Nathaniel Hawthorne,Romance,M
-"Frankenstein",1818,Mary Shelley,Terror,F
-"Drácula",1897,Bram Stoker,Terror,M
-"O Retrato de Dorian Gray",1890,Oscar Wilde,Romance,M
-"O Médico e o Monstro",1886,Robert Louis Stevenson,Terror,M
-"A Máquina do Tempo",1895,H.G. Wells,Ficção Científica,M
+"A Cor que Caiu do Espaço",1927,H.P. Lovecraft,Terror,M
+"A Divina Comédia",1320,Dante Alighieri,Poesia,M
 "A Guerra dos Mundos",1898,H.G. Wells,Ficção Científica,M
-"Vinte Mil Léguas Submarinas",1870,Júlio Verne,Aventura,M
-"Viagem ao Centro da Terra",1864,Júlio Verne,Aventura,M
-"O Corcunda de Notre-Dame",1831,Victor Hugo,Romance,M
-"Os Miseráveis",1862,Victor Hugo,Romance,M
+"A Hora da Estrela",1977,Clarice Lispector,Romance,F
+"A Hora do Lobisomem",1983,Stephen King,Terror,M
+"A Ilustre Casa de Ramires",1900,Eça de Queirós,Romance,M
+"A Jangada de Pedra",1986,José Saramago,Romance,M
+"A Letra Escarlate",1850,Nathaniel Hawthorne,Romance,M
+"A Maçã no Escuro",1961,Clarice Lispector,Romance,F
+"A Metamorfose",1915,Franz Kafka,Novela,M
+"A Montanha Mágica",1924,Thomas Mann,Romance,M
+"A Moreninha",1844,Joaquim Manuel de Macedo,Romance,M
+"A Morte de Artemio Cruz",1962,Carlos Fuentes,Romance,M
+"A Máquina do Tempo",1895,H.G. Wells,Ficção Científica,M
+"A Náusea",1938,Jean-Paul Sartre,Romance,M
+"A Paixão Segundo G.H.",1964,Clarice Lispector,Romance,F
+"A Peste",1947,Albert Camus,Romance,M
+"A Princesa de Cleves",1678,Madame de La Fayette,Romance,F
+"A Queda",1956,Albert Camus,Romance,M
+"A Relíquia",1887,Eça de Queirós,Romance,M
+"A Revolução dos Bichos",1945,George Orwell,Fábula,M
+"Admirável Mundo Novo",1932,Aldous Huxley,Ficção Científica,M
+"Almas Mortas",1842,Nicolai Gógol,Romance,M
+"Angústia",1936,Graciliano Ramos,Romance,M
+"Anna Karenina",1877,Liev Tolstói,Romance,M
+"Antologia Poética",1965,Vinicius de Moraes,Poesia,M
+"As Afinidades Eletivas",1809,Johann Wolfgang von Goethe,Romance,M
+"As Cidades Invisíveis",1972,Ítalo Calvino,Romance,M
+"As Intermitências da Morte",2005,José Saramago,Romance,M
+"As Ligações Perigosas",1782,Pierre Choderlos de Laclos,Romance,M
+"As Vinhas da Ira",1939,John Steinbeck,Romance,M
+"Botchan",1906,Natsume Soseki,Romance,M
+"Carrie",1974,Stephen King,Terror,M
+"Casa de Pensão",1884,Aluísio Azevedo,Romance,M
+"Cem Anos de Solidão",1967,Gabriel García Márquez,Romance,M
+"Clara dos Anjos",1948,Lima Barreto,Romance,M
+"Confissões de uma Máscara",1949,Yukio Mishima,Romance,M
+"Crime e Castigo",1866,Fiodor Dostoiévski,Romance,M
+"Cândido",1759,Voltaire,Conto,M
+"David Copperfield",1850,Charles Dickens,Romance,M
+"Decamerão",1353,Giovanni Boccaccio,Conto,M
+"Dom Casmurro",1899,Machado de Assis,Romance,M
+"Dom Quixote",1605,Miguel de Cervantes,Romance,M
+"Drácula",1897,Bram Stoker,Terror,M
+"Duna",1965,Frank Herbert,Ficção Científica,M
+"Em Busca do Tempo Perdido",1927,Marcel Proust,Romance,M
+"Ensaio sobre a Cegueira",1995,José Saramago,Romance,M
+"Esaú e Jacó",1904,Machado de Assis,Romance,M
+"Eugênia Grandet",1833,Honoré de Balzac,Romance,M
+"Fahrenheit 451",1953,Ray Bradbury,Ficção Científica,M
+"Fausto",1832,Johann Wolfgang von Goethe,Poesia,M
+"Felicidade Clandestina",1971,Clarice Lispector,Conto,F
+"Ficções",1944,Jorge Luis Borges,Conto,M
+"Frankenstein",1818,Mary Shelley,Terror,F
+"Fundação",1951,Isaac Asimov,Ficção Científica,M
+"Grande Sertão: Veredas",1956,João Guimarães Rosa,Romance,M
+"Grandes Esperanças",1861,Charles Dickens,Romance,M
+"Guerra e Paz",1869,Liev Tolstói,Romance,M
+"Helena",1876,Machado de Assis,Romance,M
+"História Universal da Infâmia",1935,Jorge Luis Borges,Conto,M
+"História do Cerco de Lisboa",1989,José Saramago,Romance,M
+"Iaiá Garcia",1878,Machado de Assis,Romance,M
+"Indiana",1832,George Sand,Romance,F
+"Iracema",1865,José de Alencar,Romance,M
+"It: A Coisa",1986,Stephen King,Terror,M
+"Jane Eyre",1847,Charlotte Brontë,Romance,F
+"Júlia ou a Nova Heloísa",1761,Jean-Jacques Rousseau,Romance,M
+"Kafka à Beira-mar",2002,Haruki Murakami,Romance,M
+"Kokoro",1914,Natsume Soseki,Romance,M
+"Laços de Família",1960,Clarice Lispector,Conto,F
+"Levantado do Chão",1980,José Saramago,Romance,M
+"Lolita",1955,Vladimir Nabokov,Romance,M
+"Lucíola",1862,José de Alencar,Romance,M
+"Madame Bovary",1857,Gustave Flaubert,Romance,M
+"Memorial de Aires",1908,Machado de Assis,Romance,M
+"Memórias Póstumas de Brás Cubas",1881,Machado de Assis,Romance,M
+"Memórias do Subsolo",1864,Fiodor Dostoiévski,Romance,M
+"Mensagem",1934,Fernando Pessoa,Poesia,M
+"Moby Dick",1851,Herman Melville,Aventura,M
+"Neuromancer",1984,William Gibson,Ficção Científica,M
+"Norwegian Wood",1987,Haruki Murakami,Romance,M
+"Nós",1924,Yevgeny Zamyatin,Ficção Científica,M
+"O Aleph",1949,Jorge Luis Borges,Conto,M
+"O Alienista",1882,Machado de Assis,Novela,M
+"O Amor nos Tempos do Cólera",1985,Gabriel García Márquez,Romance,M
+"O Ano da Morte de Ricardo Reis",1984,José Saramago,Romance,M
+"O Apanhador no Campo de Centeio",1951,J.D. Salinger,Romance,M
+"O Ateneu",1888,Raul Pompéia,Romance,M
+"O Barão nas Árvores",1957,Ítalo Calvino,Romance,M
+"O Call de Cthulhu",1928,H.P. Lovecraft,Terror,M
+"O Castelo",1926,Franz Kafka,Romance,M
 "O Conde de Monte Cristo",1844,Alexandre Dumas,Aventura,M
+"O Corcunda de Notre-Dame",1831,Victor Hugo,Romance,M
+"O Coração Delator",1843,Edgar Allan Poe,Terror,M
+"O Cortiço",1890,Aluísio Azevedo,Romance,M
+"O Crime do Padre Amaro",1875,Eça de Queirós,Romance,M
+"O Estrangeiro",1942,Albert Camus,Romance,M
+"O Eternauta",1957,Héctor Germán Oesterheld,Ficção Científica,M
+"O Evangelho Segundo Jesus Cristo",1991,José Saramago,Romance,M
+"O Exorcista",1971,William Peter Blatty,Terror,M
+"O Fazedor",1960,Jorge Luis Borges,Poesia,M
+"O Grande Gatsby",1925,F. Scott Fitzgerald,Romance,M
+"O Homem Duplicado",2002,José Saramago,Romance,M
+"O Homem Invisível",1897,H.G. Wells,Ficção Científica,M
+"O Idiota",1869,Fiodor Dostoiévski,Romance,M
+"O Imoralista",1902,André Gide,Romance,M
+"O Iluminado",1977,Stephen King,Terror,M
+"O Jardim dos Caminhos que se Bifurcam",1941,Jorge Luis Borges,Conto,M
+"O Leão, a Feiticeira e o Guarda-Roupa",1950,C. S. Lewis,Fantasia,M
+"O Livro do Desassossego",1982,Fernando Pessoa,Poesia,M
+"O Lustre",1946,Clarice Lispector,Romance,F
+"O Morro dos Ventos Uivantes",1847,Emily Brontë,Romance,F
+"O Mulato",1881,Aluísio Azevedo,Romance,M
+"O Médico e o Monstro",1886,Robert Louis Stevenson,Terror,M
+"O Nome da Rosa",1980,Umberto Eco,Romance,M
+"O Primo Basílio",1878,Eça de Queirós,Romance,M
+"O Processo",1925,Franz Kafka,Romance,M
+"O Príncipe",1532,Nicolau Maquiavel,Ensaio,M
+"O Retrato de Dorian Gray",1890,Oscar Wilde,Romance,M
+"O Sol Também se Levanta",1926,Ernest Hemingway,Romance,M
+"O Sol é para Todos",1960,Harper Lee,Romance,F
+"O Templo do Pavilhão Dourado",1956,Yukio Mishima,Romance,M
+"O Triste Fim de Policarpo Quaresma",1911,Lima Barreto,Romance,M
+"O Velho e o Mar",1952,Ernest Hemingway,Aventura,M
+"O Vermelho e o Negro",1830,Stendhal,Romance,M
+"Oblómov",1859,Ivan Gontcharóv,Romance,M
+"Orgulho e Preconceito",1813,Jane Austen,Romance,F
+"Os Falsários",1925,André Gide,Romance,M
+"Os Irmãos Karamázov",1880,Fiodor Dostoiévski,Romance,M
+"Os Maias",1888,Eça de Queirós,Romance,M
+"Os Miseráveis",1862,Victor Hugo,Romance,M
+"Os Noivos",1827,Alessandro Manzoni,Romance,M
+"Os Sofrimentos do Jovem Werther",1774,Johann Wolfgang von Goethe,Romance,M
 "Os Três Mosqueteiros",1844,Alexandre Dumas,Aventura,M
 "Pais e Filhos",1862,Ivan Turguêniev,Romance,M
-"Memórias do Subsolo",1864,Fiodor Dostoiévski,Romance,M
-"Os Irmãos Karamázov",1880,Fiodor Dostoiévski,Romance,M
-"O Idiota",1869,Fiodor Dostoiévski,Romance,M
-"Almas Mortas",1842,Nicolai Gógol,Romance,M
-"Oblómov",1859,Ivan Gontcharóv,Romance,M
-"Cem Anos de Solidão",1967,Gabriel García Márquez,Romance,M
-"O Amor nos Tempos do Cólera",1985,Gabriel García Márquez,Romance,M
-"Pedro Páramo",1955,Juan Rulfo,Romance,M
-"A Morte de Artemio Cruz",1962,Carlos Fuentes,Romance,M
-"O Nome da Rosa",1980,Umberto Eco,Romance,M
-"Ulisses",1922,James Joyce,Romance,M
-"O Grande Gatsby",1925,F. Scott Fitzgerald,Romance,M
-"O Sol Também se Levanta",1926,Ernest Hemingway,Romance,M
-"Por Quem os Sinos Dobram",1940,Ernest Hemingway,Romance,M
-"O Velho e o Mar",1952,Ernest Hemingway,Aventura,M
-"Admirável Mundo Novo",1932,Aldous Huxley,Ficção Científica,M
-"1984",1949,George Orwell,Ficção Científica,M
-"A Revolução dos Bichos",1945,George Orwell,Fábula,M
-"O Apanhador no Campo de Centeio",1951,J.D. Salinger,Romance,M
-"O Sol é para Todos",1960,Harper Lee,Romance,F
-"As Vinhas da Ira",1939,John Steinbeck,Romance,M
-"Ratos e Homens",1937,John Steinbeck,Romance,M
-"Lolita",1955,Vladimir Nabokov,Romance,M
-"O Processo",1925,Franz Kafka,Romance,M
-"O Castelo",1926,Franz Kafka,Romance,M
-"A Metamorfose",1915,Franz Kafka,Novela,M
-"O Estrangeiro",1942,Albert Camus,Romance,M
-"A Peste",1947,Albert Camus,Romance,M
-"A Queda",1956,Albert Camus,Romance,M
-"A Náusea",1938,Jean-Paul Sartre,Romance,M
-"Em Busca do Tempo Perdido",1927,Marcel Proust,Romance,M
-"A Montanha Mágica",1924,Thomas Mann,Romance,M
-"Os Sofrimentos do Jovem Werther",1774,Johann Wolfgang von Goethe,Romance,M
-"Fausto",1832,Johann Wolfgang von Goethe,Poesia,M
-"As Afinidades Eletivas",1809,Johann Wolfgang von Goethe,Romance,M
-"A Princesa de Cleves",1678,Madame de La Fayette,Romance,F
-"As Ligações Perigosas",1782,Pierre Choderlos de Laclos,Romance,M
-"Cândido",1759,Voltaire,Conto,M
-"Zadig",1747,Voltaire,Conto,M
-"Manon Lescaut",1731,Abade Prévost,Romance,M
-"Júlia ou a Nova Heloísa",1761,Jean-Jacques Rousseau,Romance,M
-"Indiana",1832,George Sand,Romance,F
-"Eugênia Grandet",1833,Honoré de Balzac,Romance,M
 "Papai Goriot",1835,Honoré de Balzac,Romance,M
-"A Cartuxa de Parma",1839,Stendhal,Romance,M
-"O Imoralista",1902,André Gide,Romance,M
-"Os Falsários",1925,André Gide,Romance,M
-"A Divina Comédia",1320,Dante Alighieri,Poesia,M
-"Decamerão",1353,Giovanni Boccaccio,Conto,M
-"O Príncipe",1532,Nicolau Maquiavel,Ensaio,M
-"Os Noivos",1827,Alessandro Manzoni,Romance,M
-"Se isto é um homem",1947,Primo Levi,Memórias,M
-"As Cidades Invisíveis",1972,Ítalo Calvino,Romance,M
-"Se num inverno uma noite um viajante",1979,Ítalo Calvino,Romance,M
-"O Barão nas Árvores",1957,Ítalo Calvino,Romance,M
-"Kafka à Beira-mar",2002,Haruki Murakami,Romance,M
-"Norwegian Wood",1987,Haruki Murakami,Romance,M
 "País das Neves",1947,Yasunari Kawabata,Romance,M
-"O Som das Ondas",1954,Yukio Mishima,Romance,M
-"O Templo do Pavilhão Dourado",1956,Yukio Mishima,Romance,M
-"Confissões de uma Máscara",1949,Yukio Mishima,Romance,M
+"Pedro Páramo",1955,Juan Rulfo,Romance,M
+"Perto do Coração Selvagem",1943,Clarice Lispector,Romance,F
+"Por Quem os Sinos Dobram",1940,Ernest Hemingway,Romance,M
+"Primeiras Estórias",1962,João Guimarães Rosa,Conto,M
+"Psicose",1959,Robert Bloch,Terror,M
+"Quincas Borba",1891,Machado de Assis,Romance,M
+"Ratos e Homens",1937,John Steinbeck,Romance,M
+"Sagarana",1946,João Guimarães Rosa,Conto,M
+"Se isto é um homem",1947,Primo Levi,Memórias,M
+"Se num inverno uma noite um viajante",1979,Ítalo Calvino,Romance,M
+"Senhora",1875,José de Alencar,Romance,M
 "Sou um Gato",1905,Natsume Soseki,Sátira,M
-"Botchan",1906,Natsume Soseki,Romance,M
-"Kokoro",1914,Natsume Soseki,Romance,M
-"A Jangada de Pedra",1986,José Saramago,Romance,M
-"O Evangelho Segundo Jesus Cristo",1991,José Saramago,Romance,M
-"Ensaio sobre a Cegueira",1995,José Saramago,Romance,M
-"O Homem Duplicado",2002,José Saramago,Romance,M
-"As Intermitências da Morte",2005,José Saramago,Romance,M
-"O Ano da Morte de Ricardo Reis",1984,José Saramago,Romance,M
-"A Caverna",2000,José Saramago,Romance,M
+"São Bernardo",1934,Graciliano Ramos,Romance,M
 "Todos os Nomes",1997,José Saramago,Romance,M
-"Levantado do Chão",1980,José Saramago,Romance,M
-"História do Cerco de Lisboa",1989,José Saramago,Romance,M
-"O Livro do Desassossego",1982,Fernando Pessoa,Poesia,M
-"Mensagem",1934,Fernando Pessoa,Poesia,M
-"O Aleph",1949,Jorge Luis Borges,Conto,M
-"Ficções",1944,Jorge Luis Borges,Conto,M
-"O Jardim dos Caminhos que se Bifurcam",1941,Jorge Luis Borges,Conto,M
-"História Universal da Infâmia",1935,Jorge Luis Borges,Conto,M
-"O Fazedor",1960,Jorge Luis Borges,Poesia,M
-"Antologia Poética",1965,Vinicius de Moraes,Poesia,M
-"O Eternauta",1957,Héctor Germán Oesterheld,Ficção Científica,M
+"Ubirajara",1874,José de Alencar,Romance,M
+"Ulisses",1922,James Joyce,Romance,M
+"Um Conto de Duas Cidades",1859,Charles Dickens,Romance,M
+"Viagem ao Centro da Terra",1864,Júlio Verne,Aventura,M
+"Vidas Secas",1938,Graciliano Ramos,Romance,M
+"Vinte Mil Léguas Submarinas",1870,Júlio Verne,Aventura,M
+"Zadig",1747,Voltaire,Conto,M
+"Água Viva",1973,Clarice Lispector,Ficção,F
+"1984",1949,George Orwell,Ficção Científica,M
+"2001: Uma Odisseia no Espaço",1968,Arthur C. Clarke,Ficção Científica,M
 "O Leão, a Feiticeira e o Guarda-Roupa",1950,C. S. Lewis,Fantasia,M
+"Praticamente Inofensiva, e Outras Histórias",1992,Douglas Adams,Ficção Científica,M
