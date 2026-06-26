@@ -258,8 +258,9 @@ int main(){
     // Guarda qual a ordenação atual do vetor;
     string ordenacao = "nenhuma";
     do {
+        cout << "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n";
         cout << "Existem " << livrosAtivos << " livros no acervo.";
-        cout << "\n--- Biblioteca ---\n";
+        cout << "\n=-=-=-=-= Biblioteca =-=-=-=-=\n";
         cout << "1 - Buscar por título\n";
         cout << "2 - Ordenar por título\n";
         cout << "3 - Buscar por autor\n";
@@ -270,6 +271,7 @@ int main(){
         cout << "8 - Remover obra\n";
         cout << "9 - Salvar mudanças\n";
         cout << "0 - Sair\n";
+        cout << "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n";
         cout << "Opcao: ";
         cin >> opcao;
         cin.ignore();
@@ -280,8 +282,8 @@ int main(){
                 cout << "Insira um título: ";
                 getline(cin, procura);
 
-                quickSortTitulo(vetor, 0, tam - 1);
-                int index = buscaBinariaTitulo(vetor, 0, tam - 1, procura);
+                if (ordenacao != "titulo")quickSortTitulo(vetor, 0, tam - 1);
+                    int index = buscaBinariaTitulo(vetor, 0, tam - 1, procura);
                 if (index == -1) cout << "Título não encontrado.\n";
                 else cout << vetor[index].autor << endl;
 
@@ -299,7 +301,7 @@ int main(){
                 string procura;
                 cout << "Insira um autor: ";
                 getline(cin, procura);
-                quickSortAutor(vetor, 0, tam - 1);
+                if (ordenacao != "autor") quickSortAutor(vetor, 0, tam - 1);
                 int index = buscaBinariaAutor(vetor, 0, tam - 1, procura);
                 if (index == -1) cout << "Nenhum livro desse autor encotrado.\n";
                 else {
@@ -347,7 +349,7 @@ int main(){
                 break;
             }
             case '8': {
-                quickSortTitulo(vetor, 0 , tam - 1);
+                if (ordenacao != "titulo") quickSortTitulo(vetor, 0 , tam - 1);
                 string removendo;
                 cout << "Insira o título da obra que deseja remover: ";
                 getline(cin, removendo);
